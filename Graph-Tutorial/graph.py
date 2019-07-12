@@ -63,7 +63,7 @@ class Graph:
         # TODO add the new vertex to the vertex list
         # TODO return the new vertex
 
-    def getVertex(self, n):
+    def getVertex(self, key):
         """return the vertex if it exists"""
         # TODO return the vertex if it is in the graph
 
