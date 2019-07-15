@@ -63,14 +63,14 @@ class Graph:
         """Return the vertex if it exists"""
         # TODO return the vertex if it is in the graph
 
-    def add_edge(self, key1, key2, cost=0):
-        """add an edge from vertex with key `key1` to vertex with key `key2` with a cost."""
+    def add_edge(self, key1, key2, weight=0):
+        """add an edge from vertex with key `key1` to vertex with key `key2` with a weight."""
         # TODO if either vertex is not in the graph,
         # add it - or return an error (choice is up to you).
         # TODO if both vertices in the graph, add the
-        # edge by making t a neighbor of f
+        # edge by making key1 a neighbor of key2
         # and using the addNeighbor method of the Vertex class.
-        # Hint: the vertex f is stored in self.vertList[f].
+        # Hint: the vertex key1 is stored in self.vertList[f].
 
     def get_vertices(self):
         """return all the vertices in the graph"""
