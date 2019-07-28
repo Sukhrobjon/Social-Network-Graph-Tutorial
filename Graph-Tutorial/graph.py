@@ -132,8 +132,7 @@ class Graph:
         #
 
         if from_vertex not in self.vert_dict or to_vertex not in self.vert_dict:
-            raise KeyError(
-                "One of the given vertices does not exist in graph!")
+            raise KeyError("One of the given vertices does not exist in graph!")
 
         # check if you are at the location
         if from_vertex == to_vertex:
@@ -187,6 +186,32 @@ class Graph:
         # if there is no path from source to destination return -1
         return ([], -1)
 
+    def breadth_first_search(self, from_vertex, n_level):
+        '''Finding all friends at a certain connection level
+        
+        Args:
+            vertex (str): given vertex to find its all neighors 
+            n_level (int): certain connection level away from vertex
 
+        Returns:
+            all nodes (list): all nodes found nth level
 
-    
+        '''
+        # check if starter node is in the graph
+        if from_vertex not in self.vert_dict:
+            raise KeyError(f"The vertex {from_vertex}, you entered doesn't exist in graph!")
+
+        # we need a queue, set, and parent_pointer dict
+        queue = Queue(maxsize=len(self.get_vertices()))
+        visited_nodes = set()
+        parent_pointers = {}
+
+        # enqueue the starter node, visit and add to the parent_pointer 
+        current_node = self.vert_dict[from_vertex]
+        queue.put(current_node)
+        visited_nodes.add(current_node.data)
+        # set the parent node as none 
+        parent_pointers[current_node.data] = None
+
+        
+

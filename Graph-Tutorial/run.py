@@ -46,7 +46,7 @@ def build_graph(filename):
 
     # print("Verticies in shortest path:", *shortest_path[0])
     # print(f"Number of edges in shortest path: {shortest_path[1]}")
-
+    
 
 if __name__ == "__main__":
     filename = sys.argv[1]
