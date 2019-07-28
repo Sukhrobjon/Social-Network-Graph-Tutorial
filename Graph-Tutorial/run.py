@@ -4,7 +4,7 @@ if __name__ == "__main__":
 
     # Challenge 1: Create the graph
 
-    g = Graph()
+    g = Graph(directed=False)
 
     # Add your friends
     g.add_vertex("Friend 1")
@@ -19,12 +19,21 @@ if __name__ == "__main__":
 
     # Challenge 1: Output the vertices & edges
     # Print vertices
-    print("The vertices are: ", g.get_vertices(), "\n")
-
+    print("Verticies:", list(g.get_vertices()))
+    print("# Edges: ", g.num_edges)
     # Print edges
     print("The edges are: ")
-    for v in g:
-        for w in v.get_neighbors():
-            print(f'({v.get_id()}, {w.get_id()}, {v.get_edge_weight(w)})')
+    for edge in g.edge_list:
+        print(f'({edge[0]}, {edge[1]}, {edge[0]})')
+    
+    # for v in g:
+    #     for w in v.get_neighbors():
+    #         print(f'({v.get_id()}, {w.get_id()}, {v.get_edge_weight(w)})')
 
-    print("edges: ", g.num_edges)
+    
+
+
+
+# TODO:
+# 1. consider how to print the graph edges if it is undericted
+    # using .get_id() or edge_list property
