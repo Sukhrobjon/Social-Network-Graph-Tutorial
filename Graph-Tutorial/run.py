@@ -36,27 +36,26 @@ def build_graph(filename):
         # unpack the edge tuple
         g.add_edge(*edge)
 
-    print("# Vertices: ", len(g.get_vertices()))
-    print("# Edges: ", g.num_edges)
-    print("The Edge List: ")
-    for edge in g.get_edges():
-        print(edge)
-
-    # shortest_path = g.find_shortest_path(from_vertex, to_vertex)
-
-    # print("Verticies in shortest path:", *shortest_path[0])
-    # print(f"Number of edges in shortest path: {shortest_path[1]}")
     
+    return g, g.get_vertices(), g.get_edges()
 
 if __name__ == "__main__":
+    
+    seperator = "=========================================================="
     filename = sys.argv[1]
     # from_vertex = sys.argv[2]
     # to_vertex = sys.argv[3]
 
     data = read_file(filename)
-    build_graph(filename)
+    graph, vertices, edges = build_graph(filename)
 
-
+    print("# Vertices: ", list(vertices))
+    print("# Edges: ", len(edges))
+    print("The Edge List: ")
+    for edge in edges:
+        print(edge)
+    
+    print(seperator)
 # TODO:
 # 1. consider how to print the graph edges if it is undericted
     # using .get_id() or edge_list property

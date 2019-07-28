@@ -186,7 +186,7 @@ class Graph:
         # if there is no path from source to destination return -1
         return ([], -1)
 
-    def breadth_first_search(self, from_vertex, n_level):
+    def breadth_first_search(self, from_vertex):
         '''Finding all friends at a certain connection level
         
         Args:
@@ -205,13 +205,29 @@ class Graph:
         queue = Queue(maxsize=len(self.get_vertices()))
         visited_nodes = set()
         parent_pointers = {}
-
+        bfs_order = []
         # enqueue the starter node, visit and add to the parent_pointer 
-        current_node = self.vert_dict[from_vertex]
-        queue.put(current_node)
-        visited_nodes.add(current_node.data)
+        current_vertex = self.vert_dict[from_vertex]
+        queue.put(current_vertex)
+        visited_nodes.add(current_vertex.data)
         # set the parent node as none 
-        parent_pointers[current_node.data] = None
+        parent_pointers[current_vertex.data] = None
 
-        
+        # start traversing
+
+        while queue:
+            # dequeue the current node
+            current_vertex = queue.get()
+            bfs_order.append(current_vertex.data)
+
+            for neighbor in current_vertex.neighbors:
+                # check if the neighbor is visited 
+                if neighbor.data not in visited_nodes:
+                    queue.put(neighbor)
+                    visited_nodes.add(neighbor.data)
+                    parent_pointers[neighbor.data] = current_vertex.data
+
+        return bfs_order
+
+
 
