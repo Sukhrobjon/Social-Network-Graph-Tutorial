@@ -157,7 +157,7 @@ class Graph:
         # alternative way of storing the references to parent  pointers
         parent_pointers[current_vertex.data] = None
 
-        while queue:
+        while not queue.empty():
             # dequeue the front element
             current_vertex = queue.get()
             path.append(current_vertex)
@@ -186,15 +186,16 @@ class Graph:
         # if there is no path from source to destination return -1
         return ([], -1)
 
-    def breadth_first_search(self, from_vertex):
-        '''Finding all friends at a certain connection level
+    def breadth_first_search_traversal(self, from_vertex):
+        '''Traversing entire grapgh using breadth first search algorithm.
+        The algorithm adapted from: https://en.wikipedia.org/wiki/Breadth-first_search
         
         Args:
             vertex (str): given vertex to find its all neighors 
-            n_level (int): certain connection level away from vertex
+            
 
         Returns:
-            all nodes (list): all nodes found nth level
+            all vertices (list): All vertices in a BFS order
 
         '''
         # check if starter node is in the graph
@@ -206,28 +207,58 @@ class Graph:
         visited_nodes = set()
         parent_pointers = {}
         bfs_order = []
+        level_reference = {}
+        
         # enqueue the starter node, visit and add to the parent_pointer 
         current_vertex = self.vert_dict[from_vertex]
         queue.put(current_vertex)
         visited_nodes.add(current_vertex.data)
         # set the parent node as none 
         parent_pointers[current_vertex.data] = None
+        # to store how far from the starter node
+        level_reference[current_vertex.data] = 0
+        
 
         # start traversing
-
-        while queue:
+        level_counter = 0
+        while not queue.empty():
             # dequeue the current node
             current_vertex = queue.get()
             bfs_order.append(current_vertex.data)
+            level_counter += 1
 
             for neighbor in current_vertex.neighbors:
                 # check if the neighbor is visited 
                 if neighbor.data not in visited_nodes:
+                    
                     queue.put(neighbor)
                     visited_nodes.add(neighbor.data)
                     parent_pointers[neighbor.data] = current_vertex.data
+                    level_reference[neighbor.data] = level_reference[current_vertex.data] + 1
+        print(f'level_count: {level_reference}')
+        return level_reference
 
-        return bfs_order
+    def n_level_bfs(self, from_vertex, n_level):
+        '''Traversing entire grapgh using breadth first search algorithm.
+        The algorithm adapted from: https://en.wikipedia.org/wiki/Breadth-first_search
+        
+        Args:
+            vertex (str): given vertex to find its all neighors 
+            n_level (int): certain connection level away from vertex
+
+        Returns:
+            all nodes (list): all nodes found nth level
+
+        '''
+        n_level_connections = []
+        vertices = self.breadth_first_search_traversal(from_vertex)
+        for vertex in vertices:
+            if vertices[vertex] == n_level:
+                n_level_connections.append(vertex)
+                print(f'vertex: {vertex}')
+
+        return n_level_connections
+
 
 
 

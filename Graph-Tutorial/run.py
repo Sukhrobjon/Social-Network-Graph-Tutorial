@@ -41,21 +41,30 @@ def build_graph(filename):
 
 if __name__ == "__main__":
     
-    seperator = "=========================================================="
+    seperator = "==============================="
     filename = sys.argv[1]
     # from_vertex = sys.argv[2]
     # to_vertex = sys.argv[3]
 
     data = read_file(filename)
-    graph, vertices, edges = build_graph(filename)
-
+    g, vertices, edges = build_graph(filename)
+    print(f'{seperator}Start{seperator}')
+    
     print("# Vertices: ", list(vertices))
     print("# Edges: ", len(edges))
     print("The Edge List: ")
     for edge in edges:
         print(edge)
     
-    print(seperator)
+    print(f'{seperator}BFS order{seperator}')
+
+    bfs_order = g.breadth_first_search_traversal('1') 
+    print(bfs_order)
+    
+    print(f'{seperator}Shortest Path{seperator}', '\n')
+
+    print(f'{seperator}N level connections{seperator}')
+    print(g.n_level_bfs('1', 3))
 # TODO:
 # 1. consider how to print the graph edges if it is undericted
     # using .get_id() or edge_list property
