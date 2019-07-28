@@ -118,7 +118,7 @@ class Graph:
         """Return number of all edges in the graph"""
         return self.edge_list
 
-    def shortest_path(self, from_vertex, to_vertex):
+    def find_shortest_path(self, from_vertex, to_vertex):
         """Search for the shortest path from vertex a to b using Breadth first search
         
         Args:
@@ -126,7 +126,8 @@ class Graph:
             to_vertex (str) : the distanation or end of the path
 
         Returns:
-            shortest path (int) : the shortest number of edges between two vertices
+            shortest path (tuple): List of vertices in the path and len
+                                    Empty list if path does not exist
         """
         #
 
@@ -137,7 +138,7 @@ class Graph:
         # check if you are at the location
         if from_vertex == to_vertex:
             vert_obj = self.vert_dict[from_vertex]
-            return [vert_obj.data], 0
+            return ([vert_obj.data], 0)
 
         # grab the start location from graph
         current_vertex = self.vert_dict[from_vertex]
@@ -182,8 +183,10 @@ class Graph:
                 current_vertex = current_vertex.parent
 
             # print(f'parent pointers: {parent_pointers}')
-            return path[::-1], len(path) - 1
+            return (path[::-1], len(path) - 1)
         # if there is no path from source to destination return -1
-        return [], -1
+        return ([], -1)
+
+
 
     
