@@ -129,8 +129,7 @@ class Graph:
             shortest path (tuple): List of vertices in the path and len
                                     Empty list if path does not exist
         """
-        #
-
+    
         if from_vertex not in self.vert_dict or to_vertex not in self.vert_dict:
             raise KeyError("One of the given vertices does not exist in graph!")
 
@@ -141,10 +140,11 @@ class Graph:
 
         # grab the start location from graph
         current_vertex = self.vert_dict[from_vertex]
+    
+        # initialize the queue, visited nodes set, a dictionary to keep track of parent 
+        queue = Queue(maxsize=len(self.get_vertices()))
         seen_vertex = set()
         parent_pointers = {}
-        # initialize the queue with size of number of verticies in the graph
-        queue = Queue(maxsize=len(self.get_vertices()))
 
         # start the traversal
         queue.put(current_vertex)
@@ -162,10 +162,11 @@ class Graph:
             current_vertex = queue.get()
             path.append(current_vertex)
 
-            # check if destination found
+            # check if we are at destination
             if current_vertex.data == to_vertex:
-                path_found = True
+                path_found = True # found the goal 
                 break
+            
             # otherwise
             for neighbor in current_vertex.neighbors:
 
@@ -174,6 +175,7 @@ class Graph:
                     seen_vertex.add(neighbor.data)
                     neighbor.parent = current_vertex
                     parent_pointers[neighbor.data] = current_vertex.data
+        
         if path_found:
             path = []
 
@@ -181,7 +183,6 @@ class Graph:
                 path.append(current_vertex.data)
                 current_vertex = current_vertex.parent
 
-            # print(f'parent pointers: {parent_pointers}')
             return (path[::-1], len(path) - 1)
         # if there is no path from source to destination return -1
         return ([], -1)
@@ -195,8 +196,7 @@ class Graph:
             
 
         Returns:
-            all vertices (list): All vertices in a BFS order
-
+            all vertices (list): All vertices in a BFS order starting at the given vertex
         '''
         # check if starter node is in the graph
         if from_vertex not in self.vert_dict:
@@ -235,27 +235,32 @@ class Graph:
                     visited_nodes.add(neighbor.data)
                     parent_pointers[neighbor.data] = current_vertex.data
                     level_reference[neighbor.data] = level_reference[current_vertex.data] + 1
-        print(f'level_count: {level_reference}')
-        return level_reference
+        # print(f'level_count: {level_reference}')
+        return bfs_order, level_reference
 
     def n_level_bfs(self, from_vertex, n_level):
-        '''Traversing entire grapgh using breadth first search algorithm.
-        The algorithm adapted from: https://en.wikipedia.org/wiki/Breadth-first_search
+        """Find all nth level connections of 
         
         Args:
             vertex (str): given vertex to find its all neighors 
             n_level (int): certain connection level away from vertex
 
         Returns:
-            all nodes (list): all nodes found nth level
-
-        '''
+            all nodes (list): all nodes found at the nth level
+                              if there is no given level of connections raises value error
+        """
+        
+        vertices = self.breadth_first_search_traversal(from_vertex)[1]
         n_level_connections = []
-        vertices = self.breadth_first_search_traversal(from_vertex)
+        max_level = max(vertices.values())
+        
+        # check if vertex has given depth level of connections
+        if n_level > max_level:
+            raise ValueError(f"Current vertex has maximum level of {max_level} connections!")
+        
         for vertex in vertices:
             if vertices[vertex] == n_level:
                 n_level_connections.append(vertex)
-                print(f'vertex: {vertex}')
 
         return n_level_connections
 

@@ -43,8 +43,9 @@ if __name__ == "__main__":
     
     seperator = "==============================="
     filename = sys.argv[1]
-    # from_vertex = sys.argv[2]
-    # to_vertex = sys.argv[3]
+    
+    from_vertex = "Sukhrob"
+    to_vertex = "A"
 
     data = read_file(filename)
     g, vertices, edges = build_graph(filename)
@@ -57,14 +58,15 @@ if __name__ == "__main__":
         print(edge)
     
     print(f'{seperator}BFS order{seperator}')
-
-    bfs_order = g.breadth_first_search_traversal('1') 
-    print(bfs_order)
+    bfs_order = g.breadth_first_search_traversal(from_vertex) 
+    print(bfs_order[0])
     
     print(f'{seperator}Shortest Path{seperator}', '\n')
-
+    
+    print(g.find_shortest_path(from_vertex, to_vertex))
+    
     print(f'{seperator}N level connections{seperator}')
-    print(g.n_level_bfs('1', 3))
+    print(g.n_level_bfs(from_vertex, 3))
 # TODO:
 # 1. consider how to print the graph edges if it is undericted
     # using .get_id() or edge_list property
