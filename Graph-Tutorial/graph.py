@@ -112,11 +112,15 @@ class Graph:
 
     def get_vertices(self):
         """Return all the vertices in the graph"""
-        return self.vert_dict.keys()
+        return list(self.vert_dict.keys())
 
     def get_edges(self):
         """Return number of all edges in the graph"""
         return self.edge_list
+
+    
+        
+        
 
     def find_shortest_path(self, from_vertex, to_vertex):
         """Search for the shortest path from vertex a to b using Breadth first search
@@ -196,7 +200,8 @@ class Graph:
             
 
         Returns:
-            all vertices (list): All vertices in a BFS order starting at the given vertex
+            bfs order (tuple): first item is all vertices in a bfs order
+                               second item is levels of other vertices from starting vertex
         '''
         # check if starter node is in the graph
         if from_vertex not in self.vert_dict:
@@ -235,8 +240,8 @@ class Graph:
                     visited_nodes.add(neighbor.data)
                     parent_pointers[neighbor.data] = current_vertex.data
                     level_reference[neighbor.data] = level_reference[current_vertex.data] + 1
-        # print(f'level_count: {level_reference}')
-        return bfs_order, level_reference
+        
+        return (bfs_order, level_reference)
 
     def n_level_bfs(self, from_vertex, n_level):
         """Find all nth level connections of 
@@ -265,5 +270,15 @@ class Graph:
         return n_level_connections
 
 
+def build_graph(graph: Graph, vertices, edges):
+        
+        # add the vertices
+        for vertex in vertices:
+            graph.add_vertex(vertex)
 
+        # add the edges
+        for edge in edges:
+            # unpack the edge, because it could be len of 2 or 3
+            graph.add_edge(*edge)
 
+        return graph, vertices, edge
