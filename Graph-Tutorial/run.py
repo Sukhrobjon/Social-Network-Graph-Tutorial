@@ -11,8 +11,8 @@ def main(filename):
     seperator = "==============================="
     
 
-    from_vertex = "2"
-    to_vertex = "7"
+    from_vertex = "1"
+    to_vertex = "5"
     
     # grab the edges and vertices from graph object
     g_edges = graph.edge_list
@@ -38,6 +38,11 @@ def main(filename):
 
     print(f'{seperator}N level connections{seperator}')
     print(graph.n_level_bfs(from_vertex, 1))
+
+    print(f'{seperator}DFS path{seperator}')
+    print((graph.dfs_recursive(from_vertex)))
+
+
 
 if __name__ == "__main__":
     filename = sys.argv[1]

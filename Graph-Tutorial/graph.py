@@ -280,6 +280,30 @@ class Graph:
 
         return n_level_connections
 
+    def dfs_recursive(self, from_vertex, visited=None):
+        """Finds a path between two vertices
+        """
+        parent_pointers = {}
+        if visited is None:
+            visited = []
+        current_vertex = self.vert_dict[from_vertex]
+        parent_pointers[current_vertex.data] = None
+        visited.append(current_vertex.data)
+        for neigbor in current_vertex.neighbors:
+            if neigbor.data not in visited:
+                self.dfs_recursive(neigbor.data, visited)
+                parent_pointers[neigbor.data] = current_vertex.data
+        return visited
+
+    def dfs_paths(self, start, goal, path=None):
+        if path is None:
+            path = [start]
+        if start == goal:
+            yield path
+        for next in self.vert_dict[start].neighbors - set(path):
+            yield from self.dfs_paths(next, goal, path + [next])
+
+
 
 def build_graph(graph: Graph, vertices, edges):
         
