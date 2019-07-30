@@ -83,7 +83,7 @@ class Graph:
         if key in self.vert_dict.keys():
             return key
         return None
-    def add_edge_modified(self, from_vertex, to_vertex, weight=None):
+    def add_edge(self, from_vertex, to_vertex, weight=None):
         
         if from_vertex == to_vertex:
             print(f'You cant add the vertex to itself!')
@@ -290,7 +290,6 @@ def build_graph(graph: Graph, vertices, edges):
         # add the edges
         for edge in edges:
             # unpack the edge, because it could be len of 2 or 3
-            print(f"current edge: {edge}")
-            graph.add_edge_modified(*edge)
+            graph.add_edge(*edge)
 
         return graph
