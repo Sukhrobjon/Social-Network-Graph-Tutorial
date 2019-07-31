@@ -265,7 +265,11 @@ class Graph:
             all nodes (list): all nodes found at the nth level
                               if there is no given level of connections raises value error
         """
-        
+        # check if starter node is in the graph
+        if from_vertex not in self.vert_dict:
+            raise KeyError(
+                        f"The vertex {from_vertex}, you entered doesn't exist in graph!")
+
         vertices = self.breadth_first_search_traversal(from_vertex)[1]
         n_level_connections = []
         max_level = max(vertices.values())
@@ -284,25 +288,44 @@ class Graph:
         """Finds a path between two vertices
         """
         parent_pointers = {}
-        if visited is None:
-            visited = []
         current_vertex = self.vert_dict[from_vertex]
-        parent_pointers[current_vertex.data] = None
-        visited.append(current_vertex.data)
+        if visited is None:
+            visited = set()
+            parent_pointers[current_vertex.data] = None
+        
+        visited.add(current_vertex.data)
         for neigbor in current_vertex.neighbors:
             if neigbor.data not in visited:
                 self.dfs_recursive(neigbor.data, visited)
                 parent_pointers[neigbor.data] = current_vertex.data
+        print(f"parent_pointers {parent_pointers}")
         return visited
 
-    def dfs_paths(self, start, goal, path=None):
-        if path is None:
-            path = [start]
-        if start == goal:
-            yield path
-        for next in self.vert_dict[start].neighbors - set(path):
-            yield from self.dfs_paths(next, goal, path + [next])
+    def dfs_paths(self, from_vertex, to_vertex, visited):
+        # if from_vertex not in self.vert_dict or to_vertex not in self.vert_dict:
+        #     raise KeyError(
+        #         "One of the given vertices does not exist in graph!")
 
+        # check if you are at the location
+        if from_vertex == to_vertex:
+            return [from_vertex]
+
+    
+        current_vertex = self.vert_dict[from_vertex]
+        visited.add(current_vertex.data)
+        print(visited)
+        
+        for neighbor in current_vertex.neighbors:
+    
+            if neighbor.data not in visited:
+                path = self.dfs_paths(neighbor.data, to_vertex, visited)
+                # print("after path updated")
+                if path:
+                    path.append(current_vertex.data)
+                    # print(f"path: {path}")
+                    return path
+
+        return []
 
 
 def build_graph(graph: Graph, vertices, edges):

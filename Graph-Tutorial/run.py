@@ -19,28 +19,32 @@ def main(filename):
     g_vertices = graph.get_vertices()
 
     
-    print(f'{seperator}Start{seperator}')
+    # print(f'{seperator}Start{seperator}')
 
-    print(f'Vertices: {g_vertices}')
-    print(f'Number of Edges: {len(g_edges)}')
-    print("The Edge List:")
-    for edge in g_edges:
-        print(edge)
+    # print(f'Vertices: {g_vertices}')
+    # print(f'Number of Edges: {len(g_edges)}')
+    # print("The Edge List:")
+    # for edge in g_edges:
+    #     print(edge)
 
-    print(f'{seperator}BFS order{seperator}')
-    bfs_order = graph.breadth_first_search_traversal(from_vertex)
-    print(bfs_order[0])
+    # print(f'{seperator}BFS order{seperator}')
+    # bfs_order = graph.breadth_first_search_traversal(from_vertex)
+    # print(bfs_order[0])
 
-    print(f'{seperator}Shortest Path{seperator}')
-    shortest_path = graph.find_shortest_path(from_vertex, to_vertex)
-    print(f"Verticies in shortest path: {shortest_path[0]}")
-    print(f"Number of edges in shortest path: {shortest_path[1]}")
+    # print(f'{seperator}Shortest Path{seperator}')
+    # shortest_path = graph.find_shortest_path(from_vertex, to_vertex)
+    # print(f"Verticies in shortest path: {shortest_path[0]}")
+    # print(f"Number of edges in shortest path: {shortest_path[1]}")
 
-    print(f'{seperator}N level connections{seperator}')
-    print(graph.n_level_bfs(from_vertex, 1))
+    # print(f'{seperator}N level connections{seperator}')
+    # print(graph.n_level_bfs(from_vertex, 1))
 
-    print(f'{seperator}DFS path{seperator}')
+    print(f'{seperator}DFS order traversal{seperator}')
     print((graph.dfs_recursive(from_vertex)))
+
+    print(f'{seperator}DFS find path{seperator}')
+    path = (graph.dfs_paths(from_vertex, to_vertex, set()))
+    print(path[::-1])
 
 
 
