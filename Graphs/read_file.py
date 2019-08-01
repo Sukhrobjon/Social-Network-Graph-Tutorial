@@ -1,5 +1,5 @@
 
-from graph import Graph, Vertex
+from Graphs.graph import Graph, Vertex
 
 def read_file(filename):
     """Read the txt file containg graph information and return them
@@ -39,6 +39,3 @@ def read_file(filename):
 
 
 
-
-# filename = 'graph_no_weight.txt'
-# print(read_file(filename))

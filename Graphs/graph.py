@@ -284,27 +284,35 @@ class Graph:
 
         return n_level_connections
 
-    def dfs_recursive(self, from_vertex, visited=None):
-        """Finds a path between two vertices
+    def dfs_recursive(self, from_vertex, visited=None, order=None):
+        """Traverse the graph and get all vertices using DFS algorithm
         """
-        parent_pointers = {}
+
+        if from_vertex not in self.vert_dict:
+            raise KeyError(
+                "One of the given vertices does not exist in graph!")
+        
         current_vertex = self.vert_dict[from_vertex]
-        if visited is None:
+        # check if its first iteration
+        if visited is None and order is None:
             visited = set()
-            parent_pointers[current_vertex.data] = None
+            order = []
+
         
         visited.add(current_vertex.data)
+        order.append(current_vertex.data)
+        
         for neigbor in current_vertex.neighbors:
             if neigbor.data not in visited:
-                self.dfs_recursive(neigbor.data, visited)
-                parent_pointers[neigbor.data] = current_vertex.data
-        print(f"parent_pointers {parent_pointers}")
-        return visited
+                self.dfs_recursive(neigbor.data, visited, order=order)
+                
+        # print(order)
+        return order
 
     def dfs_paths(self, from_vertex, to_vertex, visited):
-        # if from_vertex not in self.vert_dict or to_vertex not in self.vert_dict:
-        #     raise KeyError(
-        #         "One of the given vertices does not exist in graph!")
+        if from_vertex not in self.vert_dict or to_vertex not in self.vert_dict:
+            raise KeyError(
+                "One of the given vertices does not exist in graph!")
 
         # check if you are at the location
         if from_vertex == to_vertex:
@@ -313,7 +321,7 @@ class Graph:
     
         current_vertex = self.vert_dict[from_vertex]
         visited.add(current_vertex.data)
-        print(visited)
+        
         
         for neighbor in current_vertex.neighbors:
     
@@ -322,7 +330,6 @@ class Graph:
                 # print("after path updated")
                 if path:
                     path.append(current_vertex.data)
-                    # print(f"path: {path}")
                     return path
 
         return []

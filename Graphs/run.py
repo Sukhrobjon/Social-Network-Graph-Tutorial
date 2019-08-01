@@ -1,6 +1,6 @@
 import sys
-from graph import Graph, Vertex, build_graph
-from read_file import read_file
+from graphs.graph import Graph, build_graph
+from graphs.read_file import read_file
 
 
 def main(filename):
@@ -44,12 +44,15 @@ def main(filename):
 
     print(f'{seperator}DFS find path{seperator}')
     path = (graph.dfs_paths(from_vertex, to_vertex, set()))
+    print(f"{bool(path)}")
     print(path[::-1])
+    
 
 
 
 if __name__ == "__main__":
-    filename = sys.argv[1]
+    # filename = sys.argv[1]
+    filename = 'graph_no_weight.txt'
     main(filename)
     
 # TODO:
