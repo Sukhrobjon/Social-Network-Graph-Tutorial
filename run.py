@@ -47,7 +47,6 @@ def main(filename):
 
 
 if __name__ == "__main__":
-    root_file = 'Graphs/inputs/'
-    # add actual filename
-    filename = root_file + sys.argv[1]
+    
+    filename = sys.argv[1]
     main(filename)
