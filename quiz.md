@@ -40,6 +40,16 @@ Quizzes will be given in class either using on online format, paper format, or o
  ## Quiz 4
   ### Dynamic Programming
  - Explain the 5 steps of Dynamic Programming.
- - Find a recurrence relation from a sub problem definition.
+    1. Identify the subproblems - breaking it down until base case. or what would be the smallest version of the problem.
+    1. Guess first choice - arbitrarily choose the first best choice
+    1. Recursively define the value of an optimal solution - see the pattern and call the function recursively
+    1. Compute the value of an optimal solution (recurse and memoize) - memoize or store the already calculated values and have it ready if it is repeated. 
+    1. Solve original problem - reconstruct from the sub-problems - reconstruct the problem from bottom-up 
+
+ - Find a recurrence relation from a sub problem definition. - e.g. fib(3) -> fib(2) + fib(1)
+    fib(2) -> fib(1) + fib(1). the occurance is F sub n = (F sub n-1) + (F sub n-1)
  - Draw a recursion tree from a recursive implementation of a dynamic programming problem.
+    
  - Define memoization and how it speeds up a Dynamic Programming solution.
+    - Memoization is optimization technique used by storing the function calls(results) in a cached storage in dictionaries for example. It speeds up the program because when the same call or calculation(input) occur. 
+
