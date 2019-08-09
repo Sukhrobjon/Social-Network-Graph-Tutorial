@@ -32,7 +32,10 @@ def read_file(filename):
 
             # grab all the edges
             else:
+
                 edge = line.strip('()\n').split(',')
+                if len(edge) > 3 or len(edge) < 2:
+                    raise Exception("Edges must contain 2 or 3 values!")
                 edges.append(edge)
 
     return graph, vertices, edges

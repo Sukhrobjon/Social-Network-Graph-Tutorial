@@ -8,42 +8,49 @@ def main(filename):
     graph, vertices, edges = read_file(filename)
     graph = build_graph(graph, vertices, edges)
 
-    seperator = "==============================="
+    seperator = "========================="
 
+    
     from_vertex = "1"
     to_vertex = "4"
 
+    
     # grab the edges and vertices from graph object
     g_edges = graph.edge_list
     g_vertices = graph.get_vertices()
 
-    print(f'{seperator}Start{seperator}')
-
+    
+    print(f'{seperator}Chapter 1: Make a graph{seperator}')
     print(f'Vertices: {g_vertices}')
     print(f'Number of Edges: {len(g_edges)}')
     print("The Edge List:")
     for edge in g_edges:
         print(edge)
 
-    print(f'{seperator}BFS order{seperator}')
-    bfs_order = graph.breadth_first_search_traversal(from_vertex)
-    print(bfs_order[0])
+    
+    print(f'{seperator}Chapter 2: Find your neighbors{seperator}')
+    from_vertex_obj = Vertex(from_vertex)
+    neighbors = from_vertex_obj.get_neighbors()
+    print(f"neighbors: {neighbors}")
 
-    print(f'{seperator}Shortest Path{seperator}')
+    
+    print(f'{seperator}Chapter 3: N level connections{seperator}')
+    print(graph.n_level_bfs(from_vertex, 1))
+
+    
+    print(f'{seperator}Chapter 4: Finding the Path{seperator}')
+    path = (graph.dfs_paths(from_vertex, to_vertex, set()))
+    print(path[::-1])
+
+    
+    print(f'{seperator}Chapter 5: Shortest Path{seperator}')
     shortest_path = graph.find_shortest_path(from_vertex, to_vertex)
     print(f"Verticies in shortest path: {shortest_path[0]}")
     print(f"Number of edges in shortest path: {shortest_path[1]}")
 
-    print(f'{seperator}N level connections{seperator}')
-    print(graph.n_level_bfs(from_vertex, 1))
+    print(f'{seperator}Chapter 6: Clique Discovery{seperator}')
+    
 
-    print(f'{seperator}DFS order traversal{seperator}')
-    print((graph.dfs_recursive(from_vertex)))
-
-    print(f'{seperator}DFS find path{seperator}')
-    path = (graph.dfs_paths(from_vertex, to_vertex, set()))
-    print(f"{bool(path)}")
-    print(path[::-1])
 
 
 if __name__ == "__main__":

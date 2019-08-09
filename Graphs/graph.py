@@ -28,7 +28,7 @@ class Vertex(object):
         return f'{self.data} adjacent to {[x.data for x in self.neighbors]}'
 
     def get_neighbors(self):
-        """Return the neighbors of this vertex."""
+        """Return the neighbors of this(self) vertex."""
         return self.neighbors.keys()
 
     def get_id(self):
@@ -41,15 +41,11 @@ class Vertex(object):
         return self.neighbors[vertex] if vertex in self.neighbors else None
 
 
-""" Graph Class
-A class demonstrating the essential
-facts and functionalities of graphs.
-"""
-
-# NOTE: id is the key and vertecies are the values
-
 
 class Graph:
+    """ Graph Class A class demonstrating the essential
+        facts and functionalities of graphs.
+    """
     def __init__(self, directed=False):
         """Initialize a graph object with an empty dictionary."""
         self.vert_dict = {}
@@ -327,12 +323,20 @@ class Graph:
     
             if neighbor.data not in visited:
                 path = self.dfs_paths(neighbor.data, to_vertex, visited)
-                # print("after path updated")
+                
                 if path:
                     path.append(current_vertex.data)
                     return path
 
         return []
+
+    def clique(self):
+        """Start with an arbitrary vertex u and add it to the clique
+
+        For v in remaining vertices not in the clique
+        If v is adjacent to every other vertex already in the clique.
+            Add v to the clique
+            Discard v otherwise"""
 
 
 def build_graph(graph: Graph, vertices, edges):

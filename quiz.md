@@ -44,10 +44,10 @@ Quizzes will be given in class either using on online format, paper format, or o
     1. Guess first choice - arbitrarily choose the first best choice
     1. Recursively define the value of an optimal solution - see the pattern and call the function recursively
     1. Compute the value of an optimal solution (recurse and memoize) - memoize or store the already calculated values and have it ready if it is repeated. 
-    1. Solve original problem - reconstruct from the sub-problems - reconstruct the problem from bottom-up 
+    1. Solve original problem - reconstruct from the sub-problems combine results
 
  - Find a recurrence relation from a sub problem definition. - e.g. fib(3) -> fib(2) + fib(1)
-    fib(2) -> fib(1) + fib(1). the occurance is F sub n = (F sub n-1) + (F sub n-1)
+    fib(2) -> fib(1) + fib(1). the occurance is F sub n = (F sub n-1) + (F sub n-2)
  - Draw a recursion tree from a recursive implementation of a dynamic programming problem.
     
  - Define memoization and how it speeds up a Dynamic Programming solution.
