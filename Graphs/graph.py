@@ -79,6 +79,22 @@ class Graph:
         if key in self.vert_dict.keys():
             return key
         return None
+
+    def get_neighbors_of(self, vertex):
+        """Grabs all the neighbors of the current vertex
+
+        Args:
+            vertex (str): a given vertex
+
+        Returns:
+            vertex (Vertex): Vertex object if found
+        """
+        if vertex in self.vert_dict:
+            return self.vert_dict[vertex]
+
+        raise KeyError("The vertex not found in the Graph!")
+
+        
     def add_edge(self, from_vertex, to_vertex, weight=None):
         
         if from_vertex == to_vertex:
@@ -109,7 +125,6 @@ class Graph:
             # connect the edges in both ways
             from_vert_obj.add_neighbor(to_vert_obj, weight)
             to_vert_obj.add_neighbor(from_vert_obj, weight)
-        
         
         # add edges to unique edge_list
         
