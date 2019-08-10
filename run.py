@@ -16,7 +16,7 @@ def main(filename):
 
     
     # grab the edges and vertices from graph object
-    g_edges = graph.get_edges()
+    g_edges = graph.edge_list
     g_vertices = graph.get_vertices()
 
     
@@ -29,8 +29,8 @@ def main(filename):
 
     
     print(f'{seperator}Chapter 2: Find your neighbors{seperator}')
-    from_vertex_obj = graph.get_neighbors_of(from_vertex)
-    print(f"{from_vertex_obj}")
+    vertex_obj = graph.get_neighbors_of(to_vertex)
+    print(f"{vertex_obj}")
 
     
     print(f'{seperator}Chapter 3: N level connections{seperator}')
@@ -49,7 +49,7 @@ def main(filename):
 
     print(f'{seperator}Chapter 6: Clique Discovery{seperator}')
     
-
+                                                          
 
 
 if __name__ == "__main__":

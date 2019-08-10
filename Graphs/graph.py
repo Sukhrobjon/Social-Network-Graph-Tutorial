@@ -49,7 +49,8 @@ class Graph:
     def __init__(self, directed=False):
         """Initialize a graph object with an empty dictionary."""
         self.vert_dict = {}
-        self.edge_list = [] # unique edge_list
+        # unique edge_list
+        self.edge_list = [] 
         self.num_vertices = 0
         self.num_edges = 0
         self.DEFAULT_WEIGHT = 0
@@ -94,7 +95,7 @@ class Graph:
 
         raise KeyError("The vertex not found in the Graph!")
 
-        
+
     def add_edge(self, from_vertex, to_vertex, weight=None):
         
         if from_vertex == to_vertex:
@@ -127,7 +128,6 @@ class Graph:
             to_vert_obj.add_neighbor(from_vert_obj, weight)
         
         # add edges to unique edge_list
-        
         self.edge_list.append(edge)
 
     def get_vertices(self):
@@ -352,6 +352,16 @@ class Graph:
         If v is adjacent to every other vertex already in the clique.
             Add v to the clique
             Discard v otherwise"""
+
+        clique = set()
+
+        for _, vertex in self.vert_dict.items():
+            if not in clique:
+                clique.add(vertex)
+                continue
+        
+            
+
 
 
 def build_graph(graph: Graph, vertices, edges):
