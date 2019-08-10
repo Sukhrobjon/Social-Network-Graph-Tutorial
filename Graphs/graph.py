@@ -346,17 +346,17 @@ class Graph:
         return []
 
     def clique(self):
-        """Start with an arbitrary vertex u and add it to the clique
-
-        For v in remaining vertices not in the clique
-        If v is adjacent to every other vertex already in the clique.
-            Add v to the clique
-            Discard v otherwise"""
+        """finds a clique in a graph that cannot have any other vertices added 
+        to it (note this is called a maximal clique)
+            
+        Returns: 
+            clique (set): set of cliques, else empty set
+        """
 
         clique = set()
 
         for _, vertex in self.vert_dict.items():
-            if not in clique:
+            if vertex not in clique:
                 clique.add(vertex)
                 continue
         
