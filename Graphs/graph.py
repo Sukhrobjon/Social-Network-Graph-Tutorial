@@ -345,6 +345,8 @@ class Graph:
     def clique(self):
         """Finds a clique in a graph that cannot have any other vertices added
         to it (note this is called a maximal clique)
+        FULL CREDIT: Vincenzo Marcella
+        https://github.com/C3NZ/CS22-tutorial/tree/master/tutorial
 
         Returns:
             clique (set): set of cliques, else empty set
@@ -354,17 +356,17 @@ class Graph:
 
         for _, vertex in self.vert_dict.items():
             if vertex not in clique:
-                clique.add(vertex)
+                clique.add(vertex.data)
                 continue
 
             count = 0
 
             for neighbor, _ in vertex.neighbors:
-                if neighbor in clique:
+                if neighbor.data in clique:
                     count += 1
 
             if len(clique) == count:
-                clique.add(vertex)
+                clique.add(vertex.data)
 
         return clique
 

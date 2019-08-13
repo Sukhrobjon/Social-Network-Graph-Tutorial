@@ -34,15 +34,16 @@ def main(filename):
     path = (graph.dfs_paths(from_vertex, to_vertex, set()))
     print(path[::-1])
 
-
     print(f"{seperator}Chapter 5: Shortest Path{seperator}")
     shortest_path = graph.find_shortest_path(from_vertex, to_vertex)
     print(f"Verticies in shortest path: {shortest_path[0]}")
     print(f"Number of edges in shortest path: {shortest_path[1]}")
 
-    print(f'{seperator}Chapter 6: Clique Discovery{seperator}')
+    print(f"{seperator}Chapter 6: Clique Discovery{seperator}")
+    clique = graph.clique()
+    print(f"The clique in this graph {clique}")
 
 if __name__ == "__main__":
- 
+
     filename = sys.argv[1]
     main(filename)
