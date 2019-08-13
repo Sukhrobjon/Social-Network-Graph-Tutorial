@@ -41,7 +41,6 @@ class Vertex(object):
         return self.neighbors[vertex] if vertex in self.neighbors else None
 
 
-
 class Graph:
     """ Graph Class A class demonstrating the essential
         facts and functionalities of graphs.
@@ -57,11 +56,13 @@ class Graph:
         self.directed = directed
 
     def __iter__(self):
-        """Iterate over the vertex objects in the graph, to use sytax: for v in g"""
+        """Iterate over the vertex objects in the graph, to use sytax:
+        for v in g"""
         return iter(self.vert_dict.values())
 
     def add_vertex(self, key):
-        """Add a new vertex object to the graph with the given key and return the vertex."""
+        """Add a new vertex object to the graph with the given key and 
+        return the vertex."""
 
         if key in self.vert_dict:
             print(f'Vertex {key} already exists')
@@ -95,38 +96,36 @@ class Graph:
 
         raise KeyError("The vertex not found in the Graph!")
 
-
     def add_edge(self, from_vertex, to_vertex, weight=None):
-        
+
         if from_vertex == to_vertex:
             print(f'You cant add the vertex to itself!')
             return
 
         if from_vertex not in self.vert_dict or to_vertex not in self.vert_dict:
             raise ValueError("One of the vertex doesn't exist!")
-        
+
         # assigning the weight
         if weight is None:
             weight = self.DEFAULT_WEIGHT
         else:
             weight = int(weight)
-        
+
         edge = (from_vertex, to_vertex, weight)
         # handling duplicated edges in input file 
         if edge in self.get_edges():
             raise ValueError("You can't add duplicated edges!")
-        
-        
+
         from_vert_obj = self.vert_dict[from_vertex]
         to_vert_obj = self.vert_dict[to_vertex]
 
-        if self.directed: # directed graph
+        if self.directed:  # directed graph
             from_vert_obj.add_neighbor(to_vert_obj, weight)
-        else: 
+        else:
             # connect the edges in both ways
             from_vert_obj.add_neighbor(to_vert_obj, weight)
             to_vert_obj.add_neighbor(from_vert_obj, weight)
-        
+  
         # add edges to unique edge_list
         self.edge_list.append(edge)
 
@@ -142,11 +141,9 @@ class Graph:
                 edges.append((v.data, w.data, v.get_edge_weight(w)))
         return edges
 
-    
-
     def find_shortest_path(self, from_vertex, to_vertex):
         """Search for the shortest path from vertex a to b using Breadth first search
-        
+
         Args:
             from_vertex (str) : starting point on the graph
             to_vertex (str) : the distanation or end of the path
@@ -155,9 +152,9 @@ class Graph:
             shortest path (tuple): List of vertices in the path and len
                                     Empty list if path does not exist
         """
-    
+
         if from_vertex not in self.vert_dict or to_vertex not in self.vert_dict:
-            raise KeyError("One of the given vertices does not exist in graph!")
+            raise KeyError("One of the given vertices doesn't exist in graph!")
 
         # check if you are at the location
         if from_vertex == to_vertex:
@@ -166,8 +163,9 @@ class Graph:
 
         # grab the start location from graph
         current_vertex = self.vert_dict[from_vertex]
-    
-        # initialize the queue, visited nodes set, a dictionary to keep track of parent 
+
+        # initialize the queue, visited nodes set, a dictionary to keep track
+        # of parent 
         queue = Queue(maxsize=len(self.get_vertices()))
         seen_vertex = set()
         parent_pointers = {}
@@ -190,9 +188,9 @@ class Graph:
 
             # check if we are at destination
             if current_vertex.data == to_vertex:
-                path_found = True # found the goal 
+                path_found = True   # found the goal
                 break
-            
+
             # otherwise
             for neighbor in current_vertex.neighbors:
 
@@ -201,7 +199,7 @@ class Graph:
                     seen_vertex.add(neighbor.data)
                     neighbor.parent = current_vertex
                     parent_pointers[neighbor.data] = current_vertex.data
-        
+
         if path_found:
             path = []
 
@@ -215,15 +213,14 @@ class Graph:
 
     def breadth_first_search_traversal(self, from_vertex):
         '''Traversing entire grapgh using breadth first search algorithm.
-        The algorithm adapted from: https://en.wikipedia.org/wiki/Breadth-first_search
-        
-        Args:
-            vertex (str): given vertex to find its all neighors 
-            
+        The algorithm adapted from:
+        https://en.wikipedia.org/wiki/Breadth-first_search
 
+        Args:
+            vertex (str): given vertex to find its all neighors
         Returns:
-            bfs order (tuple): first item is all vertices in a bfs order
-                               second item is levels of other vertices from starting vertex
+            vertices(tuple): first item is all vertices in a bfs order
+                            second item is levels of other vertices from starting vertex
         '''
         # check if starter node is in the graph
         if from_vertex not in self.vert_dict:
@@ -346,7 +343,7 @@ class Graph:
         return []
 
     def clique(self):
-        """finds a clique in a graph that cannot have any other vertices added 
+        """Finds a clique in a graph that cannot have any other vertices added 
         to it (note this is called a maximal clique)
             
         Returns: 

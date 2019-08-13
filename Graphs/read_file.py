@@ -24,9 +24,9 @@ def read_file(filename):
                 elif graph_type == 'D':
                     graph = Graph(directed=True)
                 else:
-                    raise ValueError("Graph type is not specified correctly,type can be 'G' or 'D'!")
+                    raise ValueError("Graph type is not specified correctly, type can be 'G' or 'D'!")
 
-            # get vertices 
+            # get vertices
             elif counter == 1:
                 vertices = line.strip().split(',')
 
