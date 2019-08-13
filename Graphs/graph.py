@@ -343,10 +343,10 @@ class Graph:
         return []
 
     def clique(self):
-        """Finds a clique in a graph that cannot have any other vertices added 
+        """Finds a clique in a graph that cannot have any other vertices added
         to it (note this is called a maximal clique)
-            
-        Returns: 
+
+        Returns:
             clique (set): set of cliques, else empty set
         """
 
@@ -356,20 +356,36 @@ class Graph:
             if vertex not in clique:
                 clique.add(vertex)
                 continue
-        
-            
 
+            count = 0
+
+            for neighbor, _ in vertex.neighbors:
+                if neighbor in clique:
+                    count += 1
+
+            if len(clique) == count:
+                clique.add(vertex)
+
+        return clique
 
 
 def build_graph(graph: Graph, vertices, edges):
-        
-        # add the vertices
-        for vertex in vertices:
-            graph.add_vertex(vertex)
+    """Creates a graph with vertices and edges
 
-        # add the edges
-        for edge in edges:
-            # unpack the edge, because it could be len of 2 or 3
-            graph.add_edge(*edge)
+    Args:
+        graph(Graph): Graph object
+        vertices(list): list of vertices passed to build graph
+        edges(list): list of edges passed to build graph
+    Returns:
+        graph(Graph): Graph object with its edges and vertices added
+    """
+    # add the vertices
+    for vertex in vertices:
+        graph.add_vertex(vertex)
 
-        return graph
+    # add the edges
+    for edge in edges:
+        # unpack the edge, because it could be len of 2 or 3
+        graph.add_edge(*edge)
+
+    return graph
