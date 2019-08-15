@@ -16,6 +16,5 @@ Sukhrob,A,B,C,D,E,F,G,H,I,Joe
 (B,H)
 (C,E)
 (D,F)
-(A,B)
 (G,H)
 (I,Joe)
