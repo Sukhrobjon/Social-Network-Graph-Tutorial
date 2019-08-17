@@ -370,7 +370,21 @@ class Graph:
 
         return clique
 
+        # def minimum_spanning_tree(self, from_vertex):
+    #     """Function finds the minimum spanning tree using Prim's
+    #     algorithm. https://en.wikipedia.org/wiki/Prim%27s_algorithm
 
+    #     This helps to travel the all possible destination going mimimum
+    #     miles, starting at the arbitrary location
+
+    #     Args:
+    #         from_vertex(str): Starting point at the graph
+
+    #     Returns:
+    #         min_tree(list): list of the vertices
+    #     """
+    #     pass
+    
 def build_graph(graph: Graph, vertices, edges):
     """Creates a graph with vertices and edges
 
