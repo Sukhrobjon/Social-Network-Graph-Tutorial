@@ -384,7 +384,8 @@ class Graph:
     #         min_tree(list): list of the vertices
     #     """
     #     pass
-    
+
+
 def build_graph(graph: Graph, vertices, edges):
     """Creates a graph with vertices and edges
 
@@ -392,7 +393,7 @@ def build_graph(graph: Graph, vertices, edges):
         graph(Graph): Graph object
         vertices(list): list of vertices passed to build graph
         edges(list): list of edges passed to build graph
- 
+
     Returns:
         graph(Graph): Graph object with its edges and vertices added
     """
