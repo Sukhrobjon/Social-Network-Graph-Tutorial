@@ -125,7 +125,7 @@ class Graph:
             # connect the edges in both ways
             from_vert_obj.add_neighbor(to_vert_obj, weight)
             to_vert_obj.add_neighbor(from_vert_obj, weight)
-  
+
         # add edges to unique edge_list
         self.edge_list.append(edge)
         self.num_edges += 1

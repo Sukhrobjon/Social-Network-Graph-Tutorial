@@ -33,6 +33,16 @@ class VertexTest(unittest.TestCase):
         assert len(vertex_1.get_neighbors()) is 2
         assert vertex_1.get_edge_weight(vertex_2) is 3
 
+    def test_get_neighbors(self):
+        v_1 = Vertex('A')
+        v_2 = Vertex('B')
+        v_3 = Vertex('C')
+        v_1.add_neighbor(v_2)
+        assert v_2 in v_1.get_neighbors()
+        v_1.add_neighbor(v_3)
+        assert v_3 in v_1.get_neighbors()
+        assert v_1 not in v_3.get_neighbors()
+
 
 class GraphTest(unittest.TestCase):
 
