@@ -128,6 +128,7 @@ class Graph:
   
         # add edges to unique edge_list
         self.edge_list.append(edge)
+        self.num_edges += 1
 
     def get_vertices(self):
         """Return all the vertices in the graph"""
