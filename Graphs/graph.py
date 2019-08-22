@@ -79,7 +79,7 @@ class Graph:
         """Return the vertex if it exists"""
         # return the vertex if it is in the graph
         if key in self.vert_dict.keys():
-            return key
+            return self.vert_dict[key]
         return None
 
     def get_neighbors_of(self, vertex):
