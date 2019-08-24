@@ -43,6 +43,14 @@ class VertexTest(unittest.TestCase):
         assert v_3 in v_1.get_neighbors()
         assert v_1 not in v_3.get_neighbors()
 
+    def test_get_id(self):
+        v_1 = Vertex('A')
+        v_2 = Vertex('B')
+        v_3 = Vertex('C')
+        self.assertEqual(v_1.get_id(), 'A')
+        self.assertNotEqual(v_2.get_id(), 'A')
+        self.assertEqual(v_3.get_id(), 'C')
+
 
 class GraphTest(unittest.TestCase):
 
