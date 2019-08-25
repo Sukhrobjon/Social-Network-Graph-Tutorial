@@ -14,14 +14,14 @@ class VertexTest(unittest.TestCase):
     def test_add_neighbor(self):
         vertex_1 = Vertex('A')
         # add a neighbor without weight
-        vertex_2 = 'B'
+        vertex_2 = Vertex('B')
         vertex_1.add_neighbor(vertex_2)
         assert vertex_2 in vertex_1.neighbors
         assert len(vertex_1.get_neighbors()) is 1
         assert vertex_1.get_edge_weight(vertex_2) is 0
 
         # add another vertex with weight
-        vertex_3 = 'C'
+        vertex_3 = Vertex('C')
         vertex_1.add_neighbor(vertex_3, 5)
         assert vertex_3 in vertex_1.neighbors
         assert len(vertex_1.get_neighbors()) is 2
@@ -50,6 +50,17 @@ class VertexTest(unittest.TestCase):
         self.assertEqual(v_1.get_id(), 'A')
         self.assertNotEqual(v_2.get_id(), 'A')
         self.assertEqual(v_3.get_id(), 'C')
+
+    def test_get_edge_weight(self):
+        v_1 = Vertex('A')
+        # add a neighbor without weight
+        v_2 = Vertex('B')
+        v_1.add_neighbor(v_2, 3)
+        assert v_2 in v_1.neighbors
+        assert len(v_1.get_neighbors()) is 1
+        # check the weight
+        self.assertEqual(v_1.get_edge_weight(v_2), 3)
+
 
 
 class GraphTest(unittest.TestCase):
